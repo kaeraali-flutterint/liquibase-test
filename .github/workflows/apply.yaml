@@ -1,4 +1,4 @@
-name: 'Test migrations'
+name: 'Apply migrations'
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   migrations:
-    name: 'Test migrations'
+    name: 'Apply migrations'
     runs-on: ubuntu-latest
     strategy:
       matrix:

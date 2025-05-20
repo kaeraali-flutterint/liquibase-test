@@ -2,14 +2,14 @@
 # yaml-language-server: $schema=https://json.schemastore.org/liquibase-3.2.json
 databaseChangeLog:
   - changeSet:
-      id: "2"
+      id: "3"
       author: Alice
       changes:
       - createTable:
-          tableName: new_table
+          tableName: third_table
           columns:
           - column:
               name: test_column
               type: INT
       - tagDatabase:
-            tag: 1.0.2
+            tag: 1.1.0
