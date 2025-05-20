@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/liquibase-3.2.json
+databaseChangeLog:
+  - includeAll:
+      path: migrations

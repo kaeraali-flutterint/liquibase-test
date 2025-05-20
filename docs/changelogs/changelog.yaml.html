@@ -1,0 +1,30 @@
+<html><body><pre>
+---
+# yaml-language-server: $schema=https://json.schemastore.org/liquibase-3.2.json
+databaseChangeLog:
+  - changeSet:
+       id: "1"
+       author: Liquibase
+       changes:
+       - createTable:
+           tableName: test_table
+           columns:
+           - column:
+               name: test_column
+               type: INT
+               constraints:
+                   primaryKey:  true
+                   nullable:  false
+  - changeSet:
+      id: "2"
+      author: Alice
+      changes:
+      - createTable:
+          tableName: new_table
+          columns:
+          - column:
+              name: test_column
+              type: INT
+...
+
+</pre></body></html>

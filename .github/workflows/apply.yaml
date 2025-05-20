@@ -1,0 +1,30 @@
+name: 'Test migrations'
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  migrations:
+    name: 'Test migrations'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workspace: ["dev", "qa1"]
+      fail-fast: true
+      max-parallel: 1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: liquibase-github-actions/update-sql@v4.31.1
+        with:
+          url: 'jdbc:sqlite:${{ matrix.workspace}}.db'
+          changelogFile: 'changelog.yaml'
+      - uses: liquibase-github-actions/update@v4.31.1
+        with:
+          url: 'jdbc:sqlite:${{ matrix.workspace }}.db'
+          changelogFile: 'changelog.yaml'
+      - uses: liquibase-github-actions/history@v4.31.1
+        with:
+          url: 'jdbc:sqlite:${{ matrix.workspace }}.db'
+          changelogFile: 'changelog.yaml'

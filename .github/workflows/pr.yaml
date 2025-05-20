@@ -1,0 +1,25 @@
+name: 'Test migrations'
+on:
+  pull_request:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  migrations:
+    name: 'Test migrations'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: liquibase-github-actions/update-sql@v4.31.1
+        with:
+          url: 'jdbc:sqlite:dev.db'
+          changelogFile: 'changelog.yaml'
+      - uses: liquibase-github-actions/validate@v4.31.1
+        with:
+          url: 'jdbc:sqlite:dev.db'
+          changelogFile: 'changelog.yaml'
+      - uses: liquibase-github-actions/status@v4.31.1
+        with:
+          url: 'jdbc:sqlite:dev.db'
+          changelogFile: 'changelog.yaml'
